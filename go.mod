@@ -1,6 +1,6 @@
 module github.com/haradakashiwa/gomobile
 
-go 1.22.6
+go 1.18
 
 require (
 	golang.org/x/mod v0.20.0
