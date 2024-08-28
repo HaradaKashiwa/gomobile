@@ -310,7 +310,10 @@ func goCmd(subcmd string, srcs []string, env []string, args ...string) error {
 }
 
 func goCmdAt(at string, subcmd string, srcs []string, env []string, args ...string) error {
-	cmd := exec.Command("garble", subcmd)
+	cmd := exec.Command("garble")
+		cmd.Args = append(cmd.Args, "-seed=random")
+		cmd.Args = append(cmd.Args, "-debug")
+		cmd.Args = append(cmd.Args, subcmd)
 	tags := buildTags
 	if len(tags) > 0 {
 		cmd.Args = append(cmd.Args, "-tags", strings.Join(tags, ","))
@@ -339,8 +342,6 @@ func goCmdAt(at string, subcmd string, srcs []string, env []string, args ...stri
 	if !buildVCS {
 		cmd.Args = append(cmd.Args, "-buildvcs=false")
 	}
-		cmd.Args = append(cmd.Args, "-seed=random")
-		cmd.Args = append(cmd.Args, "-debug")
 	cmd.Args = append(cmd.Args, args...)
 	cmd.Args = append(cmd.Args, srcs...)
 
