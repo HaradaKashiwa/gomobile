@@ -312,6 +312,8 @@ func goCmd(subcmd string, srcs []string, env []string, args ...string) error {
 func goCmdAt(at string, subcmd string, srcs []string, env []string, args ...string) error {
 	cmd := exec.Command("garble")
 		cmd.Args = append(cmd.Args, "-seed=random")
+		cmd.Args = append(cmd.Args, "-tiny")
+		cmd.Args = append(cmd.Args, "-literals")
 		cmd.Args = append(cmd.Args, "-debug")
 		cmd.Args = append(cmd.Args, subcmd)
 	tags := buildTags
